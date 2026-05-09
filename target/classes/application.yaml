@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: backend-management
+  datasource:
+    url: jdbc:postgresql://localhost/onagenticdb
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+aws:
+  region: us-west-2
+  bedrock:
+    model-id: arn:aws:bedrock:us-west-2:058264358653:inference-profile/us.amazon.nova-lite-v1:0
