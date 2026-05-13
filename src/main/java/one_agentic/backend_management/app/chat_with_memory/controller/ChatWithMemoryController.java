@@ -2,6 +2,7 @@ package one_agentic.backend_management.app.chat_with_memory.controller;
 
 import jakarta.validation.Valid;
 import one_agentic.backend_management.app.chat_with_memory.service.ChatWithMemoryService;
+import one_agentic.backend_management.app.dto.ResponseDTO;
 import one_agentic.backend_management.app.dto.SendMessageDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -21,8 +22,8 @@ public class ChatWithMemoryController {
     }
 
     @PostMapping
-    public ResponseEntity chatWitMemory(@RequestBody @Valid SendMessageDTO body){
+    public ResponseEntity<ResponseDTO> chatWitMemory(@RequestBody @Valid SendMessageDTO body){
         var response = this.chatWithMemoryService.sendMessageWithMemory(body);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(response));
     }
 }

@@ -12,4 +12,4 @@ spring:
 aws:
   region: us-west-2
   bedrock:
-    model-id: arn:aws:bedrock:us-west-2:058264358653:inference-profile/us.amazon.nova-lite-v1:0
+    model-id: arn:aws:bedrock:us-west-2:058264358653:inference-profile/us.amazon.nova-2-lite-v1:0

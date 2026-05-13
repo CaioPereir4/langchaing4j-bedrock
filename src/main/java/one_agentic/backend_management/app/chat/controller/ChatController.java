@@ -1,6 +1,7 @@
 package one_agentic.backend_management.app.chat.controller;
 
 import jakarta.validation.Valid;
+import one_agentic.backend_management.app.dto.ResponseDTO;
 import one_agentic.backend_management.app.dto.SendMessageDTO;
 import one_agentic.backend_management.app.chat.service.ChatAiService;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ public class ChatController {
     }
 
     @PostMapping
-    public ResponseEntity sendMessage(@RequestBody @Valid SendMessageDTO body){
+    public ResponseEntity<ResponseDTO> sendMessage(@RequestBody @Valid SendMessageDTO body){
         var response = chatAiService.sendMessageToAi(body.text);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(response));
     }
 }
