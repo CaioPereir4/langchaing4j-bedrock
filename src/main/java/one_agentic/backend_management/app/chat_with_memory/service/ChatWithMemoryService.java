@@ -7,6 +7,7 @@ import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.MemoryId;
 import one_agentic.backend_management.app.dto.SendMessageDTO;
+import one_agentic.backend_management.app.shared.PersistentMemoryStore;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

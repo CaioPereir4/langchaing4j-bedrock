@@ -1,4 +1,4 @@
-package one_agentic.backend_management.app.chat_with_memory.service;
+package one_agentic.backend_management.app.shared;
 
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.ChatMessageDeserializer;
