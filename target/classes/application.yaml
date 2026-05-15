@@ -10,6 +10,6 @@ spring:
       ddl-auto: update
 
 aws:
-  region: us-west-2
+  region: ${AWS_REGION:us-west-2}
   bedrock:
-    model-id: arn:aws:bedrock:us-west-2:058264358653:inference-profile/us.amazon.nova-2-lite-v1:0
+    model-id: ${AWS_BEDROCK_MODEL_ID}
