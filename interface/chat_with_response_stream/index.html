@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat com Stream | LangChain4j Bedrock</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <script src="../assets/stream-chat.js" defer></script>
+  </head>
+  <body>
+    <main class="chat-shell">
+      <header class="topbar">
+        <a class="back-link" href="../">Início</a>
+        <nav class="nav-links" aria-label="Exemplos">
+          <a href="../chat/">Chat</a>
+          <a aria-current="page" href="./">Stream</a>
+        </nav>
+      </header>
+
+      <section class="chat-panel" aria-labelledby="chat-title">
+        <div class="chat-heading">
+          <p class="eyebrow">POST /chat-with-response-stream</p>
+          <h1 id="chat-title">Chat com Stream</h1>
+        </div>
+
+        <div id="messages" class="messages" aria-live="polite" aria-label="Mensagens do chat">
+          <article class="message assistant">
+            <div class="bubble">Olá, tudo bem?</div>
+          </article>
+        </div>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+
+        <form id="chat-form" class="composer" autocomplete="off">
+          <label class="sr-only" for="message-input">Mensagem</label>
+          <textarea id="message-input" rows="1" placeholder="Digite sua mensagem" required></textarea>
+          <button id="send-button" class="icon-button send-action" type="submit" aria-label="Enviar mensagem" title="Enviar mensagem">
+            <span aria-hidden="true">↑</span>
+          </button>
+          <button id="abort-button" class="icon-button stop-action" type="button" aria-label="Abortar resposta" title="Abortar resposta" disabled>
+            <span aria-hidden="true">■</span>
+          </button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
