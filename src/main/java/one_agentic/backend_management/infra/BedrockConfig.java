@@ -34,12 +34,20 @@ public class BedrockConfig {
                 .timeout(Duration.ofSeconds(30))
                 .maxRetries(3)
                 .logResponses(true)
+                .returnThinking(true)
                 .modelId(modelId)
                 .defaultRequestParameters(
                         BedrockChatRequestParameters.builder()
-                                .temperature(0.3)
-                                .maxOutputTokens(800)
+                                .enableReasoning(1024)
+                                .maxOutputTokens(2048)
                                 .promptCaching(BedrockCachePointPlacement.AFTER_SYSTEM)
+//                                .additionalModelRequestField(
+//                                        "reasoningConfig",
+//                                        Map.of(
+//                                                "type", "enabled",
+//                                                "maxReasoningEffort", "low"
+//                                        )
+//                                )
                                 .build()
                 )
                 .build();
@@ -58,18 +66,19 @@ public class BedrockConfig {
                 .timeout(Duration.ofSeconds(30))
                 .logResponses(true)
                 .modelId(modelId)
+                .returnThinking(true)
                 .defaultRequestParameters(
                         BedrockChatRequestParameters.builder()
-                                .temperature(0.3)
-                                .maxOutputTokens(800)
+                                .enableReasoning(1024)
+                                .maxOutputTokens(2048)
                                 .promptCaching(BedrockCachePointPlacement.AFTER_SYSTEM)
-                                .additionalModelRequestField(
-                                        "reasoningConfig",
-                                        Map.of(
-                                                "type", "enabled",
-                                                "maxReasoningEffort", "low"
-                                        )
-                                )
+//                                .additionalModelRequestField(
+//                                        "reasoningConfig",
+//                                        Map.of(
+//                                                "type", "enabled",
+//                                                "maxReasoningEffort", "low"
+//                                        )
+//                                )
                                 .build()
                 )
                 .build();

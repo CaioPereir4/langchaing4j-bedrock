@@ -6,6 +6,7 @@ import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.chat.response.*;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.MemoryId;
+import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
 import one_agentic.backend_management.app.dto.SendMessageDTO;
 import one_agentic.backend_management.app.shared.PersistentMemoryStore;
@@ -22,6 +23,10 @@ public class ChatWithResponseStreamService {
 
     interface Assistant {
 
+        @SystemMessage("Responda de forma objetiva e completa.\n" +
+                "Evite respostas muito longas.\n" +
+                "Se a resposta exigir muitos passos, priorize os pontos mais importantes.\n" +
+                "Nunca termine a resposta no meio de uma frase.")
         TokenStream chat(@MemoryId UUID memoryId, @dev.langchain4j.service.UserMessage String userMessage);
     }
 
@@ -73,7 +78,21 @@ public class ChatWithResponseStreamService {
                                 partialResponse.text()
                         ).build());
 
-            }).onCompleteResponse(chatResponse -> {
+            }).onPartialThinkingWithContext(((partialThinking, context) -> {
+                System.out.println("O modelo está pensando");
+                handleRef.compareAndSet(null, context.streamingHandle());
+
+                if(cancelled.get() || sink.isCancelled()){
+                    context.streamingHandle().cancel();
+                }
+
+                System.out.println("PartialResponse para request.");
+                sink.next(ServerSentEvent.<String>builder().
+                        event("thinking").data(
+                                partialThinking.text()
+                        ).build());
+
+            })).onCompleteResponse(chatResponse -> {
                 if (!sink.isCancelled()) {
                     System.out.println("Completa a request.");
                     sink.next(ServerSentEvent.<String>builder()
